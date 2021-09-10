@@ -1,4 +1,24 @@
-'use strict';
+document.getElementById('start');
+document.querySelector(".budget-value");
+document.querySelector(".daybudget-value");
+document.querySelector(".level-value");
+document.querySelector(".expenses-value");
+document.querySelector(".optionalexpenses-value");
+document.querySelector(".income-value");
+document.querySelector(".monthsavings-value");
+document.querySelector(".yearsavings-value");
+document.querySelectorAll('.expenses-item');
+document.querySelector(".expenses-item-btn");
+document.querySelector(".optionalexpenses-btn");
+document.querySelector(".count-budget-btn");
+document.querySelectorAll('.optionalexpenses-item');
+document.querySelector(".choose-income");
+document.querySelector("#savings");
+document.querySelector(".choose-sum");
+document.querySelector(".choose-percent");
+document.querySelector(".year-value");
+document.querySelector(".month-value");
+document.querySelector(".day-value");
 
 let money, time;
 
