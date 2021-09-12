@@ -33,4 +33,43 @@ window.addEventListener('DOMContentLoaded', function () {
             }
         }
     })
+
+    let hours = document.querySelector('.hours'),
+        minutes = document.querySelector('.minutes'),
+        seconds = document.querySelector('.seconds');
+
+    function timer() {
+        let startHours = 0;
+        let startMinutes = 0;
+        let startSeconds = 10;
+        let startTime = Date.now();
+        let duration = ((startHours * 60 + startMinutes) * 60 + startSeconds) * 1000
+
+        let countdown = setInterval(function () {
+            let diff = duration - (Date.now() - startTime);
+            let hoursTimer = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            let minutesTimer = Math.floor((diff / 1000 / 60) % 60);
+            let secondsTimer = Math.floor((diff / 1000) % 60);
+
+            hours.textContent = addZero(hoursTimer);
+            minutes.textContent = addZero(minutesTimer);
+            seconds.textContent = addZero(secondsTimer);
+            console.log(diff);
+            if (diff <= 0) {
+                clearInterval(countdown);
+                hours.textContent = '00';
+                minutes.textContent = '00';
+                seconds.textContent = '00';
+            }
+        }, 1000);
+    }
+
+    function addZero(num) {
+        if (num < 10) {
+            return '0' + num;
+        } else return num;
+    };
+    timer();
+
+
 });
