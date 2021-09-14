@@ -39,9 +39,9 @@ window.addEventListener('DOMContentLoaded', function () {
         seconds = document.querySelector('.seconds');
 
     function timer() {
-        let startHours = 0;
-        let startMinutes = 0;
-        let startSeconds = 10;
+        let startHours = 18;
+        let startMinutes = 20;
+        let startSeconds = 12;
         let startTime = Date.now();
         let duration = ((startHours * 60 + startMinutes) * 60 + startSeconds) * 1000
 
@@ -54,7 +54,6 @@ window.addEventListener('DOMContentLoaded', function () {
             hours.textContent = addZero(hoursTimer);
             minutes.textContent = addZero(minutesTimer);
             seconds.textContent = addZero(secondsTimer);
-            console.log(diff);
             if (diff <= 0) {
                 clearInterval(countdown);
                 hours.textContent = '00';
@@ -71,5 +70,25 @@ window.addEventListener('DOMContentLoaded', function () {
     };
     timer();
 
+    // Модальное окно
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector(".overlay"),
+        popupClose = overlay.querySelector('.popup-close'),
+        tabsMore = document.querySelectorAll('.description-btn');
 
+    tabsMore.forEach(function (item) {
+        item.addEventListener('click', showModal);
+    });
+    more.addEventListener('click', showModal);
+
+    function showModal() {
+        overlay.style.display = 'flex';
+        this.classList.add('more-splash');
+        document.body.style.overflow = "hidden";
+    }
+    popupClose.addEventListener('click', function () {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = "";
+    });
 });
