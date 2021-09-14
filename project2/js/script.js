@@ -99,22 +99,20 @@ window.addEventListener('DOMContentLoaded', function () {
         success: 'Спасибо! Скоро мы с вами свяжемся',
         failure: 'Что-то пошло не так',
     };
-    let form = document.querySelector('.main-form'),
+    let modalForm = document.querySelector('.main-form'),
+        contactForm = document.querySelector('#form'),
         input = document.querySelectorAll('input'),
         statusMessage = document.createElement('div');
 
     statusMessage.classList.add('status');
 
-
-    //file:///C:/Users/whore/Desktop/JS Course/project2/server.php
-    form.addEventListener('submit', function (e) {
+    let requestFunc = function (e) {
         e.preventDefault();
-        form.appendChild(statusMessage);
+        this.appendChild(statusMessage);
         let request = new XMLHttpRequest();
         request.open('POST', 'server.php');
         request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-
-        let formData = new FormData(form);
+        let formData = new FormData(this);
         let obj = {};
         formData.forEach(function (item, index) {
             obj[index] = item;
@@ -135,6 +133,7 @@ window.addEventListener('DOMContentLoaded', function () {
         for (let i = 0; i < input.length; i++) {
             input[i].value = "";
         }
-    })
-
+    };
+    modalForm.addEventListener('submit', requestFunc);
+    contactForm.addEventListener('submit', requestFunc);
 });
